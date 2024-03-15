@@ -1,0 +1,30 @@
+.header {
+    background-color: rgb(79, 145, 52);
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    border-radius: 8px;
+  }
+
+  .logo{
+    display: flex;
+    margin-left: 30px;
+  }
+  
+  .logo h1{
+    font-size: 50px;
+    margin-left: 30px;
+  }
+  
+  .header img {
+    max-height: 100px;
+    margin-left: 75px;
+    margin-top: 12px; 
+  }
+  
+  .profile {
+    margin-right: 80px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 20px;
+  }
