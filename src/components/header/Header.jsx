@@ -1,9 +1,14 @@
 import './header.css'
 function Header(){
     return(
-        <div className='header'>
-            <div className='header-image'></div>
-            <div className='header-title'><h1>Bob's Bingo</h1></div>
+        <div className="header"> 
+            <div className='logo'>
+                <img src="src\assets\chip.png"/>
+                <h1>Bob's Bingo</h1>
+            </div>
+            <div className='profile'>
+                <h1>Profile</h1>
+            </div>
         </div>
     )
 }

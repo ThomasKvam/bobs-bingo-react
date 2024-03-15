@@ -1,0 +1,8 @@
+.menu{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30%;
+    padding-right: 30%;
+    background-color: rgba(110, 255, 153, 0.388);
+    border-radius: 8px;
+}
