@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState} from 'react'
 
 import './App.css'
 import Header from './components/header/Header'
@@ -16,18 +16,18 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = useState(null)
 
-  
+  // console.log(loggedInUser)
 
-  const getUser = () => {
-    fetch(`https://4000/users
-    `)
-      .then((response) => response.json())
-      .then((data) => setLoggedInUser(data));
-  };
+  // const getUser = () => {
+  //   fetch(`https://localhost:4000/users
+  //   `)
+  //     .then((response) => response.json())
+  //     .then((data) => setLoggedInUser(data));
+  // };
 
-  useEffect(() => {
-    getUser();
-  })
+  // useEffect(() => {
+  //   getUser();
+  // })
 
   return (
     <>
