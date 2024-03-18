@@ -9,7 +9,7 @@ const Bird = ({ top }) => {
       height: '30px',
       //backgroundColor: 'yellow', // Simple square bird
     }} >
-        <img src="src/assets/flappy.png" alt="Bird" style={{ width: '150%', height: '150%', objectFit: 'contain' }} />
+        <img src="src\assets\dragon-player-sprite.png" alt="Bird" style={{ width: '150%', height: '150%', objectFit: 'contain' }} />
     </div>
   );
 };

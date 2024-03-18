@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Bird from './Bird';
 import Pipe from './Pipe';
+import backgroundImage from '../../../assets/background.jpg'
 
 const Game = () => {
   const screenHeight = 500;
@@ -92,7 +93,10 @@ const Game = () => {
   }, [birdPosition]); 
 
   return (
-    <div style={{ position: 'relative', width: `${screenWidth}px`, height: `${screenHeight}px`, overflow: 'hidden' }}>
+    <div className='flappy-container'>
+      <div className='gamearea' style={{ position: 'relative', width: `100%`, 
+        height: `${screenHeight}px`, overflow: 'hidden', backgroundImage:`url(${backgroundImage})`,
+        border: `2px solid black`, borderRadius:`8px` }}>
       <Bird top={birdPosition} />
       {pipes.map((pipe, index) => (
         <Pipe key={index} top={pipe.top} left={pipe.left} height={pipe.height} />
@@ -100,6 +104,7 @@ const Game = () => {
       <div style={{ position: 'absolute', top: '10px', left: '10px', color: 'black' }}>
         Score: {score}
       </div>
+    </div>
     </div>
   );
 };
