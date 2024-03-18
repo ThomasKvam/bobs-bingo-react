@@ -48,7 +48,7 @@ function App() {
           <Route path='/signup'
             element={<SignUp/>} />
 
-          <Route path='/flappy' 
+          <Route path='/dracodash' 
             element={<FlappyBird/>}/>
 
         </Routes>
