@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 import './App.css'
 import Header from './components/header/Header'
@@ -6,21 +6,55 @@ import Menu from './components/menu/Menu'
 import { Routes, Route } from 'react-router-dom'
 import FlappyBird from './components/games/flappybird/FlappyBird'
 import Dashboard from './components/dashboard/Dashboard'
+import LogIn from './components/login/index'
+import SignUp from './components/login/signup'
+
+
+const AppContext = createContext()
 
 function App() {
+
+  const [loggedInUser, setLoggedInUser] = useState(null)
+
+  
+
+  const getUser = () => {
+    fetch(`https://4000/users
+    `)
+      .then((response) => response.json())
+      .then((data) => setLoggedInUser(data));
+  };
+
+  useEffect(() => {
+    getUser();
+  })
 
   return (
     <>
       <Header />
       <Menu/>
-      <Routes>
-        <Route path='/'
-          element={<Dashboard />}/>
-          
-        <Route path='/flappy' element={<FlappyBird/>}/>
-      </Routes>
+
+      <AppContext.Provider value={{loggedInUser, setLoggedInUser}}>
+
+        <Routes>
+
+          {!loggedInUser ? (
+            <Route path='/'
+            element={<LogIn />}/>
+          ) : (
+            <Route path='/'
+              element={<Dashboard />} />
+          )}
+          <Route path='/signup'
+            element={<SignUp/>} />
+
+          <Route path='/flappy' 
+            element={<FlappyBird/>}/>
+
+        </Routes>
+      </AppContext.Provider>
     </>
   )
 }
 
-export default App
+export { App, AppContext }
