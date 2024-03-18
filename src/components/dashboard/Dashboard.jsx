@@ -4,10 +4,29 @@ function Dashboard(){
     return (
         <div className="dashboard">
             
-            <div>Blackjack</div>
-            <div>Slots</div>
+            <div className='dashboard-div'>
+                <div className='app-container'>
+                    <img src='src\assets\blackjack.png'/>
+                    <p>Blackjack</p>
+                </div>
+            </div>
+
+            <div className='dashboard-div'>
+                <div className='app-container'>
+                    <img src='src\assets\snake-icon.png'></img>
+                    <p>Snake</p>
+                </div>
+            </div>
+
+            <div className='dashboard-div'>
+                <Link to={'/dracodash'}>
+                <div className='app-container'>
+                    <img src='src\assets\dragon-game-icon.png'/>
+                    <p>Draco Dash</p>
+                </div>
+                </Link>
+            </div>
             
-            <Link to={'/flappy'}>Flappy Bird</Link>
         </div>
     )
 }

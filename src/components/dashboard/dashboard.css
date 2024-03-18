@@ -1,5 +1,28 @@
 .dashboard{
     display: flex;
-    justify-content: space-between;
-    padding: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+}
+
+.dashboard-div{
+    flex: 1;
+    border: 1px transparent;
+    background-color: rgba(241, 241, 241, 0.352);
+    justify-items: center;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.app-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard img{
+    margin-top: 5px;
+    border-radius: 80px;
+    max-width: 40%;
 }
