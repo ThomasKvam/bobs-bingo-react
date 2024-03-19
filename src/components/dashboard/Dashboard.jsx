@@ -12,10 +12,13 @@ function Dashboard(){
             </div>
 
             <div className='dashboard-div'>
+                <Link to={'/snake'}>
                 <div className='app-container'>
                     <img src='src\assets\snake-icon.png'></img>
                     <p>Snake</p>
                 </div>
+                </Link>
+
             </div>
 
             <div className='dashboard-div'>

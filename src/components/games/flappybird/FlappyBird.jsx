@@ -5,7 +5,7 @@ import Pipe from './Pipe';
 import backgroundImage from '../../../assets/background.jpg'
 
 const Game = () => {
-  const screenHeight = 500;
+  const screenHeight = 410;
   const screenWidth = 800;
   const birdSize = 30;
   const pipeWidth = 60;

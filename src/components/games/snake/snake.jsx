@@ -24,6 +24,7 @@ function App() {
         case 'ArrowRight': if (dir.x === 0) setDirection({ x: 1, y: 0 }); break;
         default: break;
       }
+      console.log("snake lenght: " + snake.length)
     }, [direction]);
 
     useEffect(() => {
