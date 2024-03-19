@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../App";
 import { Link } from "react-router-dom";
 import "./login.css";
@@ -15,6 +15,13 @@ function LogIn() {
 
   const username = user.username;
   const password = user.password;
+
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (localUser) {
+      setLoggedInUser(localUser);
+    }
+  }, [setLoggedInUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
