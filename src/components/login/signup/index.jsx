@@ -28,8 +28,8 @@ function SignUp() {
   const navigate = useNavigate()
 
   const [newUser, setNewUser] = useState(getInitialUser);
-
   console.log(newUser);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

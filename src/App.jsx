@@ -19,20 +19,6 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const location = useLocation()
 
-    // Retrieve user from local storage on component mount
-    useEffect(() => {
-      const localUser = JSON.parse(localStorage.getItem("loggedInUser"));
-      if (localUser) {
-        setLoggedInUser(localUser);
-      }
-    }, []);
-  
-    // Update local storage when loggedInUser changes
-    useEffect(() => {
-      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-    }, [loggedInUser]);
-
-
 
   return (
     <>
