@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useRef, useContext } from 'react';
 import './snake.css';
 import axios from "axios";
 import {AppContext} from '../../../App.jsx'
-import  {Request}  from '../../APIrequests.jsx';
 const gridSize = 15;
 const initialSnake = [[2, 0], [1, 0], [0, 0]];
 const initialDirection = { x: 1, y: 0 }; // Moving right initially
