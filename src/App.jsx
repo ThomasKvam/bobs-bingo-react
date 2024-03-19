@@ -1,4 +1,6 @@
-import { createContext, useState} from 'react'
+import { createContext, useState, useEffect } from "react";
+import axios from "axios";
+
 
 import './App.css'
 import Header from './components/header/Header'
@@ -11,42 +13,32 @@ import SignUp from './components/login/signup'
 import Snake from './components/games/snake/snake'
 
 
-const AppContext = createContext()
+const AppContext = createContext();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
 
   const [loggedInUser, setLoggedInUser] = useState(null)
   const location = useLocation()
 
 
 
-  // console.log(loggedInUser)
-
-  // const getUser = () => {
-  //   fetch(`https://localhost:4000/users
-  //   `)
-  //     .then((response) => response.json())
-  //     .then((data) => setLoggedInUser(data));
-  // };
-
-  // useEffect(() => {
-  //   getUser();
-  // })
-
   return (
     <>
+
       {location.pathname=== '/' && <Header />}
       <Menu/>
 
       <AppContext.Provider value={{loggedInUser, setLoggedInUser}}>
+
         <Routes>
           {!loggedInUser ? (
-            <Route path='/'
-            element={<LogIn />}/>
+            <Route path="/" element={<LogIn />} />
           ) : (
-            <Route path='/'
-              element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
           )}
+
           <Route path='/signup'
             element={<SignUp/>}/>
 
@@ -55,10 +47,11 @@ function App() {
 
           <Route path='/snake'
             element={<Snake />} />
+
         </Routes>
       </AppContext.Provider>
     </>
-  )
+  );
 }
 
-export { App, AppContext }
+export { App, AppContext };

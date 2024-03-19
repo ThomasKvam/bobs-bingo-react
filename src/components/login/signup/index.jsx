@@ -27,7 +27,6 @@ function SignUp() {
   const email = localStorage.getItem("email");
   const navigate = useNavigate()
 
-
   const [newUser, setNewUser] = useState(getInitialUser);
 
   console.log(newUser);
@@ -48,7 +47,7 @@ function SignUp() {
       firstName,
       lastName,
       email,
-      role: ["user"], // Adjusted to an array
+      role: ["user"],
       password,
     });
     console.log(response);
