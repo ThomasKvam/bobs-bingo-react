@@ -38,7 +38,7 @@ const Game = () => {
       if (now - lastPipeTimeRef.current > 3000) { //seconds between new pipes
         lastPipeTimeRef.current = now; 
       
-        const pipeGap = 90; // gap between the top and bottom pipes
+        const pipeGap = 110; // gap between the top and bottom pipes
       
         // Calculate bottom pipe top position
         const bottomPipeTopPosition = Math.random() * (screenHeight - pipeGap) / 2 + screenHeight / 4;

@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useContext } from 'react';
 import './snake.css';
-
+import axios from "axios";
+import {AppContext} from '../../../App.jsx'
+import  {Request}  from '../../APIrequests.jsx';
 const gridSize = 15;
 const initialSnake = [[2, 0], [1, 0], [0, 0]];
 const initialDirection = { x: 1, y: 0 }; // Moving right initially
@@ -12,8 +14,110 @@ function App() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const directionRef = useRef({ x: 1, y: 0 }); // Using a ref for direction
+  const { loggedInUser } = useContext(AppContext);
 
+  const updateScore = async (userId, newScore) => {
+
+    const currentScoreResponse = await axios.get(`http://localhost:4000/leaderboard/${userId}`, {
+      headers: {
+        
+        // Include the Authorization header if your API requires authentication
+        Authorization: `Bearer ${loggedInUser.token}`,
+      },
+    });
+    console.log("score: "+ newScore)
+    const currentScore = currentScoreResponse.data.data.score; // Assuming the score is returned directly. Adjust according to the actual response structure.
+    console.log("curremt: "+ currentScore)
+
+    // Calculate the new total score by adding newScore to the currentScore.
+    const totalNewScore = currentScore + newScore;
+    console.log("totalnew: " + totalNewScore)
+  try {
+    const response = await axios.put(`http://localhost:4000/leaderboard/${userId}`, {
+      score: totalNewScore, // Use the newScore parameter here
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        // Include the Authorization header if your API requires authentication
+         Authorization: `Bearer ${loggedInUser.token}`,
+      },
+    });
+
+    // Handle the response according to your application's needs
+    console.log('Update successful:', response.data);
+    // Assuming setUpdateStatus is defined elsewhere in your component
+    
+  } catch (error) {
+    console.error('Error updating score:', error);
+    // Assuming setUpdateStatus is defined elsewhere in your component
+   
+  }
+};
   
+
+/*   const updateScore = async () => {
+    try {
+      const response = await axios.put(`http://localhost:4000/leaderboard/${userId}`, {
+        score:  newScore, // Assuming the backend expects an object with a 'score' property
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Include the Authorization header if your API requires authentication
+          // Authorization: `Bearer ${yourAuthTokenHere}`,
+        },
+      });
+
+      // Handle the response according to your application's needs
+      console.log('Update successful:', response.data);
+      setUpdateStatus('Score updated successfully.');
+    } catch (error) {
+      console.error('Error updating score:', error);
+      setUpdateStatus('Failed to update score.');
+    }
+  };
+
+    
+
+  const updateScore = async (userId, newScore) => {
+    try {const leaderboardResponse = await axios.get(`http://localhost:4000/leaderboard/${userId}`, {
+        headers: {
+          Authorization: `Bearer:${loggedInUser.token}` // Include the token in the Authorization header
+        },
+      
+  
+     
+        score: newScore
+      });
+      console.log('Score update response:', leaderboardResponse.data);
+      // Handle response here, e.g., showing a success message
+    } catch (error) {
+      console.error('Error updating score:', error);
+      // Handle error here, e.g., showing an error message
+    }
+  };
+ */
+/*   const updateScore = async (userId, newScore) => {
+    try {
+      const response = await axios.put(`http://localhost:4000/leaderboard/${userId}`, {
+        score: newScore, // Use the newScore parameter here
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Include the Authorization header if your API requires authentication
+           Authorization: `Bearer ${loggedInUser.token}`,
+        },
+      });
+  
+      // Handle the response according to your application's needs
+      console.log('Update successful:', response.data);
+      // Assuming setUpdateStatus is defined elsewhere in your component
+      
+    } catch (error) {
+      console.error('Error updating score:', error);
+      // Assuming setUpdateStatus is defined elsewhere in your component
+     
+    }
+  }; */
 
   const changeDirection = useCallback((e) => {
     const { key } = e;
@@ -26,6 +130,7 @@ function App() {
         default: break;
     }
     console.log("snake " + snake.length)
+    console.log("ID: " + loggedInUser.id)
   }, []);
 
     useEffect(() => {
@@ -76,6 +181,7 @@ function App() {
   
 
   if (isGameOver) {
+    updateScore(loggedInUser.id, score)
     return <div className="game-over">Game Over! Refresh to play again.</div>;
   }
 
