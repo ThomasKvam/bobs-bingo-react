@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Bird = ({ top }) => {
   return (
@@ -8,8 +7,10 @@ const Bird = ({ top }) => {
       left: '50px', // Fixed horizontal position
       width: '30px',
       height: '30px',
-      backgroundColor: 'yellow', // Simple square bird
-    }} />
+      //backgroundColor: 'yellow', // Simple square bird
+    }} >
+        <img src="src\assets\dragon-player-sprite.png" alt="Bird" style={{ width: '150%', height: '150%', objectFit: 'contain' }} />
+    </div>
   );
 };
 

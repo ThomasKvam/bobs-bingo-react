@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 function getInitialUser() {
   const username = localStorage.getItem("username");
@@ -24,6 +25,7 @@ function SignUp() {
   const firstName = localStorage.getItem("firstName");
   const lastName = localStorage.getItem("lastName");
   const email = localStorage.getItem("email");
+  const navigate = useNavigate()
 
   const [newUser, setNewUser] = useState(getInitialUser);
 
@@ -49,6 +51,7 @@ function SignUp() {
       password,
     });
     console.log(response);
+    navigate(`/`)
   };
 
   return (
