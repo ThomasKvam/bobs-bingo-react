@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
 
@@ -17,11 +17,11 @@ function LogIn() {
   const password = user.password;
 
   useEffect(() => {
-    const localUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (localUser) {
-      setLoggedInUser(localUser);
+    const localUser = JSON.parse(localStorage.getItem("loggedInUser"))
+    if(localUser !== null){
+      setLoggedInUser(localUser)
     }
-  }, [setLoggedInUser]);
+  },[setLoggedInUser])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +30,6 @@ function LogIn() {
       password,
     });
     setLoggedInUser(response.data)
-   
   };
 
   function handleOnChange(event) {
