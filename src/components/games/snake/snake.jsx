@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './snake.css';
 
 const gridSize = 15;
@@ -11,21 +11,22 @@ function App() {
   const [food, setFood] = useState(getRandomFoodPosition);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const directionRef = useRef({ x: 1, y: 0 }); // Using a ref for direction
 
   
 
   const changeDirection = useCallback((e) => {
     const { key } = e;
-    const dir = direction;
+    const dir = directionRef.current;
     switch (key) {
-        case 'ArrowUp': if (dir.y === 0) setDirection({ x: 0, y: -1 }); break;
-        case 'ArrowDown': if (dir.y === 0) setDirection({ x: 0, y: 1 }); break;
-        case 'ArrowLeft': if (dir.x === 0) setDirection({ x: -1, y: 0 }); break;
-        case 'ArrowRight': if (dir.x === 0) setDirection({ x: 1, y: 0 }); break;
+        case 'ArrowUp': if (dir.y === 0) directionRef.current = { x: 0, y: -1 }; break;
+        case 'ArrowDown': if (dir.y === 0) directionRef.current = { x: 0, y: 1 }; break;
+        case 'ArrowLeft': if (dir.x === 0) directionRef.current = { x: -1, y: 0 }; break;
+        case 'ArrowRight': if (dir.x === 0) directionRef.current = { x: 1, y: 0 }; break;
         default: break;
-      }
-      console.log("snake lenght: " + snake.length)
-    }, [direction]);
+    }
+    console.log("snake " + snake.length)
+  }, []);
 
     useEffect(() => {
         window.addEventListener('keydown', changeDirection);
@@ -40,7 +41,7 @@ function App() {
 
   function moveSnake() {
     setSnake(prevSnake => {
-        
+        const direction = directionRef.current; 
       let newHead = [(prevSnake[0][0] + direction.y + gridSize) % gridSize, (prevSnake[0][1] + direction.x + gridSize) % gridSize];
 
       // Check for self-collision
