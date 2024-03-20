@@ -1,30 +1,52 @@
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
 import { AppContext } from "../../App";
+import './leaderboard.css'
+import { useNavigate } from "react-router";
+
 
 function Leaderboard() {
 
-  const { leaderboardData } = useContext(AppContext);
-
+  const { leaderboardData, loggedInUser } = useContext(AppContext);
+  const navigate = useNavigate()
   console.log(leaderboardData);
+  const sortedLeaderboardData = [...leaderboardData].sort((a, b) => b.score - a.score);
  
+  function goBack(){
+    navigate('/')
+  }
 
   return (
     <div>
-      <h2>Leaderboard</h2>
-      {leaderboardData &&
-        leaderboardData.map((entry, index) => (
-          <div key={index}>
-            <h3>User Information</h3>
-            <div>Username: {entry.user.username}</div>
-            <div>First Name: {entry.user.firstName}</div>
-
-            <div>
-              <h3>Score</h3>
-              <div>Score: {entry.score}</div>
-            </div>
-          </div>
-        ))}
+      {loggedInUser ? (
+        <div className="leaderboard-container">
+        <h2>Leaderboard</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Username</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaderboardData && sortedLeaderboardData.map((entry, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{entry.user.username}</td>
+                <td>{entry.score}</td>
+              </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <>
+        <div className="leaderboard-container"> 
+          <p>Error loading leaderboard...</p>
+          <button onClick={goBack}>Go back</button>
+        </div>
+        </>
+      )}
     </div>
   );
 }

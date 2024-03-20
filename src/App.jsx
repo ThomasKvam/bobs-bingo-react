@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       {loggedInUser !== null && <> 
-        {(location.pathname=== '/' || location.pathname==='/profile') && <Header />}
+        {(location.pathname=== '/' || location.pathname==='/profile' || location.pathname ==='/leaderboard') && <Header />}
         <Menu/>
       </> }
 

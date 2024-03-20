@@ -54,8 +54,15 @@ function SignUp() {
     navigate(`/`)
   };
 
+  function goBack() {
+    navigate('/')
+  }
+
   return (
     <div className="login-container">
+      <div>
+          <button onClick={goBack}>Go Back</button>
+        </div>
       <h3>Register User</h3>
       <form type="submit" onSubmit={handleSubmit}>
         <div>
@@ -106,6 +113,7 @@ function SignUp() {
           <button type="submit">Register</button>
         </div>
       </form>
+        
     </div>
   );
 }

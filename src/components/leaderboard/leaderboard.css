@@ -1,0 +1,38 @@
+.leaderboard-container {
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
+    background-color: rgba(110, 255, 153, 0.388);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  thead {
+    background-color: rgba(110, 255, 153, 0.388);
+    color: #333; /* Text color */
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: rgba(110, 255, 153, 0.2); /* Lighter shade */
+  }
+  
+  th, td {
+    border:1px solid black;
+  }
+  
