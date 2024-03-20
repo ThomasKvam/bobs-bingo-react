@@ -6,26 +6,31 @@ import { AppContext } from "../../App";
 
 
 function Dashboard() {
-  const { loggedInUser, setLoggedInUser } = useContext(AppContext);
+  const { loggedInUser, setLoggedInUser, users, setUsers } = useContext(AppContext);
 
   useEffect(() => {
-    console.log("bruker:" + loggedInUser.username);
+    console.log("Bruker ID:" + loggedInUser.id);
+    console.log(users)
   });
 
     // Retrieve user from local storage on component mount
-    useEffect(() => {
-        const localUser = JSON.parse(localStorage.getItem("loggedInUser"));
-        if (localUser) {
-          setLoggedInUser(localUser);
-        }
-      }, []);
+  useEffect(() => {
+      const localUser = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (localUser) {
+        setLoggedInUser(localUser);
+      }
+    }, []);
     
       // Update local storage when loggedInUser changes
-      useEffect(() => {
-        localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-      }, [loggedInUser]);
+    useEffect(() => {
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    }, [loggedInUser]);
 
-
+    useEffect(() => {
+      fetch(`http://localhost:4000/users`)
+      .then(response => response.json())
+      .then((data) => setUsers(data))
+    }, [])
 
     return (
         <div className="dashboard">
