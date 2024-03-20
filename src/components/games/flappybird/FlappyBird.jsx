@@ -1,8 +1,10 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import Bird from './Bird';
 import Pipe from './Pipe';
 import backgroundImage from '../../../assets/background.jpg'
+import {AppContext} from '../../../App.jsx'
+import axios from 'axios';
 
 const Game = () => {
   const screenHeight = 410;
@@ -16,6 +18,49 @@ const Game = () => {
   const jump = 50;
   const pipeSpeed = 5;
   const lastPipeTimeRef = useRef(Date.now()); // Use ref to track the last time a pipe was generated
+  const { loggedInUser } = useContext(AppContext);
+
+  const resetGame = () => {
+    setBirdPosition(screenHeight / 2);
+    setPipes([]);
+    setScore(0);
+    lastPipeTimeRef.current = Date.now();
+  };
+
+  const updateScore = async (userId, newScore) => {
+
+    const currentScoreResponse = await axios.get(`http://localhost:4000/leaderboard/${userId}`, {
+      headers: {
+        
+        Authorization: `Bearer ${loggedInUser.token}`,
+      },
+    });
+    console.log("score: "+ newScore)
+    const currentScore = currentScoreResponse.data.data.score;
+    console.log("current: "+ currentScore)
+
+    
+    const totalNewScore = currentScore + newScore;
+    console.log("totalnew: " + totalNewScore)
+  try {
+    const response = await axios.put(`http://localhost:4000/leaderboard/${userId}`, {
+      score: totalNewScore, 
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+         Authorization: `Bearer ${loggedInUser.token}`,
+      },
+    });
+
+    console.log('Update successful:', response.data);
+    
+    
+  } catch (error) {
+    console.error('Error updating score:', error);
+   
+   
+  }
+};
  
 
   useEffect(() => {
@@ -80,7 +125,9 @@ const Game = () => {
       
         if (collisionDetected) {
           alert('Game Over! Score: ' + score);
-          window.location.reload(); // Restart the game
+          updateScore(loggedInUser.id, score)
+          resetGame()
+          //window.location.reload(); // Restart the game
         }
       });
       

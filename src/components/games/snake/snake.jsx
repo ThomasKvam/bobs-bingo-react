@@ -4,16 +4,22 @@ import axios from "axios";
 import {AppContext} from '../../../App.jsx'
 const gridSize = 15;
 const initialSnake = [[2, 0], [1, 0], [0, 0]];
-const initialDirection = { x: 1, y: 0 }; // Moving right initially
 
 function App() {
   const [snake, setSnake] = useState(initialSnake);
-  const [direction, setDirection] = useState(initialDirection);
   const [food, setFood] = useState(getRandomFoodPosition);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const directionRef = useRef({ x: 1, y: 0 }); // Using a ref for direction
   const { loggedInUser } = useContext(AppContext);
+
+  const resetGame = useCallback(() => {
+    setSnake(initialSnake);
+    setFood(getRandomFoodPosition(initialSnake));
+    setScore(0);
+    directionRef.current = { x: 1, y: 0 };
+    setIsGameOver(false);
+  }, []);
 
   const updateScore = async (userId, newScore) => {
 
@@ -49,6 +55,7 @@ function App() {
    
   }
 };
+
 
   const changeDirection = useCallback((e) => {
     const { key } = e;
@@ -113,7 +120,11 @@ function App() {
 
   if (isGameOver) {
     updateScore(loggedInUser.id, score)
-    return <div className="game-over">Game Over! Refresh to play again.</div>;
+    return (
+      <div className="game-over">
+        Game Over! Score: {score} <button onClick={resetGame}>Play Again</button>
+      </div>
+    );
   }
 
   return (
