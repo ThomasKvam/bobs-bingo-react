@@ -29,7 +29,8 @@ function App() {
         <Menu/>
       </> }
 
-      <AppContext.Provider value={{loggedInUser, setLoggedInUser, users, setUsers, leaderboardData, setLeaderboardData}}>
+      <AppContext.Provider value={{loggedInUser, setLoggedInUser, users, setUsers, 
+        leaderboardData, setLeaderboardData}}>
 
         <Routes>
           {!loggedInUser ? (
