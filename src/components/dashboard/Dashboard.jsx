@@ -125,7 +125,7 @@ function Dashboard() {
       <div className="dashboard-div">
         <Link to={"/higherlower"}>
           <div className="app-container">
-            <img src="src\assets\dragon-game-icon.png" />
+            <img src="src\assets\blackjack.png" />
             <p>Higher & Lower</p>
           </div>
         </Link>
