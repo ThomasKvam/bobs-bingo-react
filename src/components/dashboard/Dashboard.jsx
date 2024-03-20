@@ -5,7 +5,8 @@ import { AppContext } from "../../App";
 import axios from "axios";
 
 function Dashboard() {
-  const { loggedInUser, setLoggedInUser, leaderboardData, setLeaderboardData } =
+
+  const { loggedInUser, setLoggedInUser, leaderboardData, setLeaderboardData, users, setUsers } =
     useContext(AppContext);
 
   console.log("table: ", leaderboardData);
@@ -66,10 +67,13 @@ function Dashboard() {
 
     fetchLeaderboardData();
   }, []);
-
+  
+  
   useEffect(() => {
-    console.log("bruker:" + loggedInUser.username);
-  });
+    fetch(`http://localhost:4000/users`)
+    .then(response => response.json())
+    .then((data) => setUsers(data))
+  }, [])
 
   // Retrieve user from local storage on component mount
   useEffect(() => {
@@ -84,13 +88,20 @@ function Dashboard() {
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
   }, [loggedInUser]);
 
+  useEffect(() => {
+    console.log("Bruker ID:" + loggedInUser.id);
+    console.log(users)
+  });
+
   return (
     <div className="dashboard">
       <div className="dashboard-div">
+        <Link to={"/slots"}>
         <div className="app-container">
-          <img src="src\assets\blackjack.png" />
-          <p>Blackjack</p>
+          <img src="src\assets\slots-icon.png" />
+          <p>Slots</p>
         </div>
+        </Link>
       </div>
 
       <div className="dashboard-div">

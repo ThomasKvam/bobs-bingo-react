@@ -1,0 +1,48 @@
+.slot-container {
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
+    background-color: rgba(110, 255, 153, 0.388);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .slot-machine {
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .score {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .lines, .bet {
+    margin-bottom: 10px;
+  }
+  
+  .lines button, .bet input[type="number"], button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .lines button:hover, button:hover {
+    background-color: rgba(110, 255, 153, 1);
+  }
+  
+  .bet input[type="number"] {
+    padding: 8px 10px;
+    width: 80px;
+    text-align: center;
+  }
+  

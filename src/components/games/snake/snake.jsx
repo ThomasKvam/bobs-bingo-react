@@ -122,7 +122,10 @@ function App() {
     updateScore(loggedInUser.id, score)
     return (
       <div className="game-over">
-        Game Over! Score: {score} <button onClick={resetGame}>Play Again</button>
+        <div> 
+          <p>Game Over! Score: {score} </p>
+          <button onClick={resetGame}>Play Again</button>
+        </div>
       </div>
     );
   }

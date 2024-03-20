@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './header.css'
 function Header(){
+    
     function handleOnClick(){
         localStorage.setItem("loggedInUser", null)
         window.location.reload()
@@ -15,7 +16,7 @@ function Header(){
                 </div>
             </Link>
             <div className='profile'>
-                <h1>Profile</h1>
+                <Link to={`/profile`}><h1>Profile</h1> </Link>
                 <button onClick={handleOnClick}>Log out</button>
             </div>
         </div>
