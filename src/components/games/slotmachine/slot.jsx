@@ -1,6 +1,7 @@
 import  { useState, useContext, useEffect } from 'react';
 import {AppContext} from '../../../App.jsx'
 import axios from 'axios';
+import './slots.css'
 const ROWS = 3;
 const COLS = 3;
 const SYMBOLS_COUNT = { "🐬": 10, "🐠": 7, "🐟": 9, "🦐": 30 };
@@ -92,9 +93,10 @@ function SlotMachine() {
     };
 
     return (
-        <div className="slot-machine">
+        <div className='slot-container'>
+            <div className="slot-machine">
             <h2>Slot Machine Game</h2>
-            <div className="score">Score: ${score}</div>
+            <div className="score">Score: {score}</div>
             <div className="lines">
                 <button onClick={() => setLines(1)}>1 Line</button>
                 <button onClick={() => setLines(2)}>2 Lines</button>
@@ -113,6 +115,7 @@ function SlotMachine() {
                     ))}
                 </div>
             )}
+            </div>
         </div>
     );
 }

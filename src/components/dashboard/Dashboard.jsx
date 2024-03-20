@@ -96,10 +96,12 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <div className="dashboard-div">
+        <Link to={"/slots"}>
         <div className="app-container">
-          <img src="src\assets\blackjack.png" />
-          <p>Blackjack</p>
+          <img src="src\assets\slots-icon.png" />
+          <p>Slots</p>
         </div>
+        </Link>
       </div>
 
       <div className="dashboard-div">

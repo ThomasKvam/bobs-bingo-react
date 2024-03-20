@@ -11,6 +11,7 @@ import LogIn from './components/login/index'
 import SignUp from './components/login/signup'
 import Snake from './components/games/snake/snake'
 import Profile from "./components/profile/Profile";
+import SlotMachine from "./components/games/slotmachine/slot";
 
 
 const AppContext = createContext();
@@ -53,6 +54,9 @@ function App() {
           
           <Route path="/profile"
             element={<Profile />} />
+
+          <Route path="/slots"
+            element={<SlotMachine />} />
 
         </Routes>
       </AppContext.Provider>
