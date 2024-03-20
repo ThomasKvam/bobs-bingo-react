@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, useCallback } from "react";
 import axios from "axios";
 import { AppContext } from "../../../App";
+import './highlow.css'
 
 function HigherLower() {
   const [deckId, setDeckId] = useState(null);
@@ -157,7 +158,7 @@ function HigherLower() {
   };
 
   return (
-    <div>
+    <div className="highlow-container">
       <h1>Higher or Lower Card Game</h1>
       <p>Score: {score}</p>
       <button
@@ -169,11 +170,11 @@ function HigherLower() {
         Start Game
       </button>
       {currentCard && nextCard && (
-        <div>
-          <div>
+        <div className="card-container">
+          <div className="card">
             Current Card: <img src={currentCard.image} alt="current card" />
           </div>
-          <div>
+          <div className="card">
             Next Card:{" "}
             <img
               src="https://www.deckofcardsapi.com/static/img/back.png"

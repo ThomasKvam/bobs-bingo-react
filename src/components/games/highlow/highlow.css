@@ -1,0 +1,49 @@
+.highlow-container {
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
+    background-color: rgba(110, 255, 153, 0.388);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: rgba(110, 255, 153, 0.9);
+    color: #333;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: rgba(110, 255, 153, 1);
+  }
+  
+  .card-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    margin: 0 10px; /* Adjust margin between cards */
+  }
+  
+  .card img {
+    max-width: 80px; /* Adjust image size */
+  }
+  
