@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import "./login.css";
 import axios from "axios";
 
@@ -16,6 +16,13 @@ function LogIn() {
   const username = user.username;
   const password = user.password;
 
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem("loggedInUser"))
+    if(localUser !== null){
+      setLoggedInUser(localUser)
+    }
+  },[setLoggedInUser])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post("http://localhost:4000/auth/signin", {
@@ -23,7 +30,6 @@ function LogIn() {
       password,
     });
     setLoggedInUser(response.data)
-   
   };
 
   function handleOnChange(event) {

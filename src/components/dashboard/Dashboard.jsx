@@ -3,12 +3,29 @@ import { Link } from "react-router-dom";
 import "./dashboard.css";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../App";
+
+
 function Dashboard() {
-  const { loggedInUser } = useContext(AppContext);
+  const { loggedInUser, setLoggedInUser } = useContext(AppContext);
 
   useEffect(() => {
-    console.log("bruker:" + loggedInUser.token);
+    console.log("bruker:" + loggedInUser.username);
   });
+
+    // Retrieve user from local storage on component mount
+    useEffect(() => {
+        const localUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (localUser) {
+          setLoggedInUser(localUser);
+        }
+      }, []);
+    
+      // Update local storage when loggedInUser changes
+      useEffect(() => {
+        localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+      }, [loggedInUser]);
+
+
 
     return (
         <div className="dashboard">

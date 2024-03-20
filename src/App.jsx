@@ -17,8 +17,8 @@ import Snake from './components/games/snake/snake'
 const AppContext = createContext();
 
 function App() {
-
-  const [loggedInUser, setLoggedInUser] = useState(null)
+  
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const location = useLocation()
 
   return (
