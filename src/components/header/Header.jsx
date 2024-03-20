@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './header.css'
 function Header(){
+    
     function handleOnClick(){
         localStorage.setItem("loggedInUser", null)
         window.location.reload()
