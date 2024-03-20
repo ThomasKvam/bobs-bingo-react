@@ -1,17 +1,16 @@
 import { createContext, useState} from "react";
-import axios from "axios";
-
 
 import './App.css'
 import Header from './components/header/Header'
 import Menu from './components/menu/Menu'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import FlappyBird from './components/games/flappybird/FlappyBird'
 import Dashboard from './components/dashboard/Dashboard'
 import Leaderboard from './components/leaderboard/Leaderboard'
 import LogIn from './components/login/index'
 import SignUp from './components/login/signup'
 import Snake from './components/games/snake/snake'
+import Profile from "./components/profile/Profile";
 
 
 const AppContext = createContext();
@@ -19,16 +18,18 @@ const AppContext = createContext();
 function App() {
   
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [users, setUsers] = useState([])
   const location = useLocation()
   const [leaderboardData, setLeaderboardData] = useState([])
 
   return (
     <>
+      {loggedInUser !== null && <> 
+        {(location.pathname=== '/' || location.pathname==='/profile') && <Header />}
+        <Menu/>
+      </> }
 
-      {location.pathname=== '/' && <Header />}
-      <Menu/>
-
-      <AppContext.Provider value={{loggedInUser, setLoggedInUser, leaderboardData, setLeaderboardData}}>
+      <AppContext.Provider value={{loggedInUser, setLoggedInUser, users, setUsers}}>
 
         <Routes>
           {!loggedInUser ? (
@@ -46,9 +47,11 @@ function App() {
           <Route path='/snake'
             element={<Snake />} />
 
-          <Route path='/leaderboard' element={
-
-          <Leaderboard/>}/>
+          <Route path='/leaderboard' 
+            element={<Leaderboard/>}/>
+          
+          <Route path="/profile"
+            element={<Profile />} />
 
         </Routes>
       </AppContext.Provider>
