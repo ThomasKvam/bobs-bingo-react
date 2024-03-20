@@ -13,6 +13,14 @@ function App() {
   const directionRef = useRef({ x: 1, y: 0 }); // Using a ref for direction
   const { loggedInUser } = useContext(AppContext);
 
+  const resetGame = useCallback(() => {
+    setSnake(initialSnake);
+    setFood(getRandomFoodPosition(initialSnake));
+    setScore(0);
+    directionRef.current = { x: 1, y: 0 };
+    setIsGameOver(false);
+  }, []);
+
   const updateScore = async (userId, newScore) => {
 
     const currentScoreResponse = await axios.get(`http://localhost:4000/leaderboard/${userId}`, {
@@ -113,7 +121,11 @@ function App() {
 
   if (isGameOver) {
     updateScore(loggedInUser.id, score)
-    return <div className="game-over">Game Over! Refresh to play again.</div>;
+    return (
+      <div className="game-over">
+        Game Over! Score: {score} <button onClick={resetGame}>Play Again</button>
+      </div>
+    );
   }
 
   return (
