@@ -121,6 +121,16 @@ function Dashboard() {
           </div>
         </Link>
       </div>
+
+      <div className="dashboard-div">
+        <Link to={"/higherlower"}>
+          <div className="app-container">
+            <img src="src\assets\dragon-game-icon.png" />
+            <p>Higher & Lower</p>
+          </div>
+        </Link>
+      </div>
+
     </div>
   );
 }

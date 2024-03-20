@@ -12,12 +12,11 @@ import SignUp from './components/login/signup'
 import Snake from './components/games/snake/snake'
 import Profile from "./components/profile/Profile";
 import SlotMachine from "./components/games/slotmachine/slot";
-
+import HigherLower from "./components/games/highlow/highlow";
 
 const AppContext = createContext();
 
 function App() {
-  
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [users, setUsers] = useState([])
   const location = useLocation()
@@ -40,14 +39,13 @@ function App() {
             <Route path="/" element={<Dashboard />} />
           )}
 
-          <Route path='/signup'
-            element={<SignUp/>}/>
+          <Route path="/signup" element={<SignUp />} />
 
-          <Route path='/dracodash' 
-            element={<FlappyBird/>}/>
+          <Route path="/dracodash" element={<FlappyBird />} />
 
-          <Route path='/snake'
-            element={<Snake />} />
+          <Route path="/snake" element={<Snake />} />
+
+          <Route path="/higherlower" element={<HigherLower />} />
 
           <Route path='/leaderboard' 
             element={<Leaderboard/>}/>
@@ -57,7 +55,6 @@ function App() {
 
           <Route path="/slots"
             element={<SlotMachine />} />
-
         </Routes>
       </AppContext.Provider>
     </>
