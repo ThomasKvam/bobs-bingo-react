@@ -7,6 +7,7 @@ function HigherLower() {
   const [currentCard, setCurrentCard] = useState(null);
   const [nextCard, setNextCard] = useState(null);
   const [score, setScore] = useState(0);
+  const [remaining, setRemaining] = useState();
   const [isGameOver, setIsGameOver] = useState(false)
 
   const { loggedInUser } = useContext(AppContext)
@@ -77,6 +78,7 @@ function HigherLower() {
       const drawnCard = response.data.cards[0];
       setCurrentCard(nextCard);
       setNextCard(drawnCard);
+      setRemaining(response.data.remaining)
       console.log("iasdkas",response.data.remaining)
       if (response.data.remaining === 0) {
         setIsGameOver(true)
@@ -89,11 +91,6 @@ function HigherLower() {
 
   if(isGameOver){
     updateScore(loggedInUser.id, score)
-    return (
-      <div className="game-over">
-        Game Over! Score: {score} <button onClick={resetGame}>Play Again</button>
-      </div>
-    );
   }
 
   //Have to convert some of the values to number becuase in the API it uses string on
@@ -183,6 +180,7 @@ function HigherLower() {
               alt="next card"
             />
           </div>
+          <div>Remaining cards: {remaining}</div>
           <button onClick={handleHigherGuess}>Higher</button>
           <button onClick={handleLowerGuess}>Lower</button>
         </div>
