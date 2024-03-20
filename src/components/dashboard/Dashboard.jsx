@@ -6,15 +6,7 @@ import axios from "axios";
 
 function Dashboard() {
 
-  const { loggedInUser, setLoggedInUser, users, setUsers } = useContext(AppContext);
-
-  useEffect(() => {
-    console.log("Bruker ID:" + loggedInUser.id);
-    console.log(users)
-  });
-
-  
-  const { loggedInUser, setLoggedInUser, leaderboardData, setLeaderboardData } =
+  const { loggedInUser, setLoggedInUser, leaderboardData, setLeaderboardData, users, setUsers } =
     useContext(AppContext);
 
   console.log("table: ", leaderboardData);
@@ -76,11 +68,12 @@ function Dashboard() {
     fetchLeaderboardData();
   }, []);
   
-    useEffect(() => {
-      fetch(`http://localhost:4000/users`)
-      .then(response => response.json())
-      .then((data) => setUsers(data))
-    }, [])
+  
+  useEffect(() => {
+    fetch(`http://localhost:4000/users`)
+    .then(response => response.json())
+    .then((data) => setUsers(data))
+  }, [])
 
   // Retrieve user from local storage on component mount
   useEffect(() => {
@@ -94,6 +87,11 @@ function Dashboard() {
   useEffect(() => {
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
   }, [loggedInUser]);
+
+  useEffect(() => {
+    console.log("Bruker ID:" + loggedInUser.id);
+    console.log(users)
+  });
 
   return (
     <div className="dashboard">
