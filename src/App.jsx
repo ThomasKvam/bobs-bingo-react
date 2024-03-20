@@ -20,6 +20,7 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [users, setUsers] = useState([])
   const location = useLocation()
+  const [leaderboardData, setLeaderboardData] = useState([])
 
   return (
     <>
