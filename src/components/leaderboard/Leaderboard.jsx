@@ -3,30 +3,11 @@ import axios from "axios";
 import { AppContext } from "../../App";
 
 function Leaderboard() {
-  const [leaderboardData, setLeaderboardData] = useState(null);
 
-  const context = useContext(AppContext);
+  const { leaderboardData } = useContext(AppContext);
 
   console.log(leaderboardData);
-  useEffect(() => {
-    const fetchLeaderboardData = async () => {
-      try {
-        // Replace with your actual bearer token
-        const response = await axios.get("http://localhost:4000/leaderboard", {
-          headers: {
-            Authorization: `Bearer ${context.loggedInUser.token}`,
-          },
-        });
-        // Extract leaderboard data from the response
-        const leaderboardDataFromResponse = response.data.data;
-        setLeaderboardData(leaderboardDataFromResponse);
-      } catch (error) {
-        console.error("Error fetching leaderboard data:", error);
-      }
-    };
-
-    fetchLeaderboardData();
-  }, []);
+ 
 
   return (
     <div>

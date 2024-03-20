@@ -20,6 +20,7 @@ function App() {
   
   const [loggedInUser, setLoggedInUser] = useState(null);
   const location = useLocation()
+  const [leaderboardData, setLeaderboardData] = useState([])
 
   return (
     <>
@@ -27,7 +28,7 @@ function App() {
       {location.pathname=== '/' && <Header />}
       <Menu/>
 
-      <AppContext.Provider value={{loggedInUser, setLoggedInUser}}>
+      <AppContext.Provider value={{loggedInUser, setLoggedInUser, leaderboardData, setLeaderboardData}}>
 
         <Routes>
           {!loggedInUser ? (

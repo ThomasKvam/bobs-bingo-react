@@ -55,7 +55,6 @@ function App() {
    
   }
 };
-  
 
 
   const changeDirection = useCallback((e) => {
