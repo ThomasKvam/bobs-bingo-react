@@ -1,5 +1,5 @@
 Component tree:
-![Component tree](Component-tree-for-project.png)
+![Component tree](Component-tree-for-project.jpg)
 
 User stories:
 - User wants to choose different games to play
